@@ -1,10 +1,14 @@
 <template>
   <div class="add-contact-panel">
+
+    <!--  CONTACT NAME AND HIS INPUT  -->
     <span>Создать новый контакт</span>
     <input @input="blockScope" id="contactName" type="text">
+
     <span class="description">
       <div class="info-icon">i</div>
       мин.3 / макс. 25 символов</span>
+
     <button @click="click">Создать контакт</button>
   </div>
 </template>

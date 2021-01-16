@@ -17,23 +17,9 @@
 <script>
 
 export default {
-  props: {
-    contact: {
-      type: Object,
-    },
-  },
+  props: ['contact'],
   emits: ['confirmDelete'],
-  data() {
-    return {
-      isConfirm: false,
-      haveDeleted: false,
-    }
-  },
   methods: {
-    cancel() {
-      this.isConfirm = false
-    },
-
     openContact(id) {
       this.$router.push('/about/' + id)
     },

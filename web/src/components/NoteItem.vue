@@ -2,6 +2,7 @@
   <div class="note-item">
     <div class="note-wrapper">
 
+      <!--  STUCK NOTE VALUES    -->
       <div class="stuck-key-value">
         <span ref="initialKey">{{ note.key }}</span>: <span ref="initialValue">{{ note.value }}</span>
 
@@ -12,12 +13,14 @@
         </div>
       </div>
 
+      <!--  STUCK EDIT NOTE VALUES  -->
       <div class="stuck-edit-note-btns">
         <button class="edit-start-btn" v-if="!isEditNote" @click="startEditNote">редактировать</button>
         <button class="edit-complete-btn" v-if="isEditNote" @click="completeEditNote(note.idNote)">Сохранить</button>
         <button class="edit-stop-btn" v-if="isEditNote" @click="stopEditNote">Отменить</button>
       </div>
 
+      <!--  BACK ACTION BUTTON  -->
       <button class="delete-note-btn" @click="$emit('confirmDelete', note)">X</button>
 
     </div>
@@ -29,12 +32,11 @@ import {updateNoteMutation} from '@/api/graphqlMutations'
 
 export default {
   emits: ['needRefreshNotes', 'confirmDelete'],
-  props: {
-    note: {
-      type: Object,
-    },
-  },
+  props: ['note'],
   data: () => ({
+
+    /* isEditName is true when we're editing note
+    Значение в true, когда мы редактируем заметку */
     isEditNote: false,
   }),
   methods: {
@@ -53,9 +55,11 @@ export default {
             return e
           })
     },
+
     stopEditNote() {
       this.isEditNote = false
     },
+
     startEditNote() {
       const initialKey = this.$refs.initialKey.textContent
       const initialValue = this.$refs.initialValue.textContent

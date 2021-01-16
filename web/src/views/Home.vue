@@ -1,12 +1,18 @@
 <template>
   <div class="contacts-box">
 
-
     <div class="contacts-list">
       <div class="action-menu">
+
+        <!--   ADD CONTACT PANEL     -->
         <AddContactPanel @needReload="reload"/>
-        <button v-if="prevDeletedContact" class="back-action-btn" @click="backAction">&#10226;</button>
+
+        <!--   BACK ACTION BUTTON     -->
+        <button class="back-action-btn" @click="backAction">&#10226;</button>
+
       </div>
+
+      <!--   OUR CONTACTS   -->
       <ContactItem
           @confirmDelete="confirmDelete"
           v-for="contact of contacts"
@@ -16,21 +22,24 @@
       />
     </div>
 
-    <div v-if="isConfirm"
+    <!--  CONFIRM MENU  -->
+    <div v-if="isConfirmDeleteContact"
          class="confirm">
+
+      <!--   CONTAINER CONFIRM MENU   -->
       <div class="confirm-container">
         Подтвердите удаление
         <button class="confirm-complete-btn" @click="deleteClick(confirmDeleteContact)">Удалить</button>
         <button class="confirm-cancel-btn" @click="cancel">Отмена</button>
       </div>
 
+      <!--  BACK DROP   -->
       <div @click="cancel" class="back-drop">
 
       </div>
     </div>
 
   </div>
-
 </template>
 
 <script>
@@ -45,12 +54,25 @@ export default {
     ContactItem, AddContactPanel,
   },
   data: () => ({
+
+    /* there is keeps ours contacts there
+    Сюда записываем наши контакты */
     contacts: [],
+
+    /* it keeps previous deleted contact
+    Сюда записываем предыдущий удаленный контакт */
     prevDeletedContact: null,
-    isConfirm: false,
-    confirmDeleteContact: null
+
+    /* visible confirm menu
+    видимость меню подтверждения */
+    isConfirmDeleteContact: false,
+
+    /* it keeps contact we want to delete
+    Сюда записываем контакт, который мы хотим удалить */
+    confirmDeleteContact: null,
   }),
   async mounted() {
+    /* fetch when page has opened */
     await getContactsQuery()
         .then(response => response.json())
         .then(result => {
@@ -58,22 +80,24 @@ export default {
         })
   },
   methods: {
+
     confirmDelete(contact) {
-      this.isConfirm = true
+      this.isConfirmDeleteContact = true
       this.confirmDeleteContact = contact
     },
 
     cancel() {
-      this.isConfirm = false
+      this.isConfirmDeleteContact = false
     },
 
     async deleteClick(contact) {
+      console.log(this.isConfirmDeleteContact)
       this.prevDeletedContact = contact
       await deleteContactMutation(contact.id)
           .then(() => {
             this.reload()
             this.confirmDeleteContact = null
-            this.isConfirm = false
+            this.isConfirmDeleteContact = false
           })
     },
 
@@ -199,6 +223,7 @@ export default {
   align-items: center;
   margin: auto;
 }
+
 .confirm-container > * {
   margin-top: .5em;
 }

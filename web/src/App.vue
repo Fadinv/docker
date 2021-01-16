@@ -3,11 +3,20 @@
     <div class="header">
       Записная книжка
     </div>
-    <router-view />
+    <router-view/>
   </div>
 </template>
 
 <script lang="ts">
+/*  - Application state depends on variables keeps into Components
+    - All function have descriptive names
+    - api directory stores fetch functions with graphql
+
+    ru:
+    - Состояние приложения зависит от переменных, которые хранятся внутри компонентов
+    - Все функции имеют описательные имена
+    - api папка содержит функции fetch запросов graphql
+*/
 export default {
   name: 'App',
 }

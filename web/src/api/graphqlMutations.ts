@@ -1,3 +1,5 @@
+/* graphql mutations */
+
 export const createContactMutation = async (contactName: string,) => {
     return fetch('http://localhost:8000/graphql', {
         method: 'POST',

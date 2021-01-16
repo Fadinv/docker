@@ -1,8 +1,10 @@
 <template>
   <div v-if="loaded" class="about">
 
+    <!--  BACK ROUTER BUTTON  -->
     <router-link to="/">&#8629; Вернуться</router-link>
 
+    <!--  NAME AND INPUT FOR NAME  -->
     <div class="edit-box" :class="{act: isEditName}">
       <span class="text-name" ref="textName">
         {{ this.contact.contactName }}
@@ -15,22 +17,31 @@
              :class="{active: isEditName}">
     </div>
 
+    <!--  STUCK BUTTONS FOR CHANGE NAME  -->
     <div class="stuck-editor-buttons">
       <button class="edit-start-btn" v-if="!isEditName" @click="startEditName">Редактировать</button>
       <button class="edit-complete-btn" v-if="isEditName" @click="completeEditName">Сохранить</button>
       <button class="edit-stop-btn" v-if="isEditName" @click="stopEditName">Отменить</button>
     </div>
 
+    <!--  PANEL FOR ADD NOTES  -->
     <div class="new-notes-box">
       <span>Добавить информацию</span>
       <span>Поле 1</span>
       <input ref="key" type="text">
       <span>Поле 2</span>
       <input ref="value" type="text">
+
       <button @click="addNote">Добавить</button>
     </div>
+
+    <!--  STUCK OUR NOTES  -->
     <div class="notes-stuck">
-      <button class="back-action-btn" @click="backAction">&#10226;</button>
+
+      <!--   BACK ACTION BUTTON   -->
+      <button class="back-action-about-btn" @click="backAction">&#10226;</button>
+
+      <!--   OUR NOTES   -->
       <NoteItem
           @confirmDelete="confirmDelete"
           @needRefreshNotes="refreshNotes"
@@ -40,13 +51,17 @@
       />
     </div>
 
+    <!--  CONFIRM MENU -->
     <div v-if="isConfirm" class="confirm">
+
+      <!--   CONTAINER CONFIRM MENU   -->
       <div class="confirm-container">
         Подтвердите удаление
         <button class="confirm-complete-btn" @click="deleteNote(howNoteDelete)">Удалить</button>
         <button class="confirm-cancel-btn" @click="cancel">Отмена</button>
       </div>
 
+      <!--  BACK DROP   -->
       <div @click="cancel" class="back-drop">
 
       </div>
@@ -65,25 +80,47 @@ export default {
     NoteItem,
   },
   data: () => ({
+    /* contact is rendered */
     contact: {
       type: Object,
     },
+
+    /* visible confirm menu
+    видимость меню подтверждения */
     isConfirm: false,
+
+    /* function mounted set that value, when we have got notes
+    component is visible when loaded is true
+    mounted устанавливает это значение в true, когда мы получили данные с сервера
+    Компонент рендериться, только с загруженными данными с сервера */
     loaded: false,
+
+    /* value when we're editing name
+    значение, которое мы используем в качестве начального, когда мы редактируем имя */
     initialName: '',
+
+    /* isEditName is true when we're editing name
+    Значение в true, когда мы редактируем имя */
     isEditName: false,
-    isEditNote: false,
+
+    /* it keeps previous deleted contact
+    Значение хранит предыдущую удаленную заметку */
     prevDeletedNote: null,
+
+    /* it keeps contact we want to delete
+    Значение хранит заметку, которую мы будем удалять */
     howNoteDelete: null,
   }),
   methods: {
     cancel() {
       this.isConfirm = false
     },
+
     confirmDelete(note) {
       this.howNoteDelete = note
       this.isConfirm = true
     },
+
     blockScope(e) {
       if (e.target.value.length > 25) {
         e.target.value = e.target.value.slice(0, 25)
@@ -104,6 +141,7 @@ export default {
             this.contact.notes.push(data.data.createNote)
           })
     },
+
     async refreshNotes() {
       await getContactQuery(+this.$route.params.id)
           .then(response => response.json())
@@ -129,6 +167,7 @@ export default {
     stopEditName() {
       this.isEditName = false
     },
+
     startEditName() {
       this.isEditName = true
       const name = this.$refs.textName
@@ -139,6 +178,7 @@ export default {
         editor.focus()
       }, 0)
     },
+
     async addNote() {
       const key = this.$refs.key
       if (key.value.length < 3) return
@@ -153,6 +193,7 @@ export default {
             value.value = ''
           })
     },
+
     async deleteNote(note) {
       this.prevDeletedNote = note
       await deleteNoteMutation(note.idNote)
@@ -168,6 +209,7 @@ export default {
           })
     },
   },
+
   async mounted() {
     await getContactQuery(+this.$route.params.id)
         .then(response => response.json())
@@ -319,7 +361,7 @@ export default {
   margin-top: 1em;
 }
 
-.back-action-btn {
+.back-action-about-btn {
   position: relative;
   font-size: 1rem;
   left: calc(100% - 2em);
@@ -335,7 +377,7 @@ export default {
   transition: all .3s ease-out;
 }
 
-.back-action-btn:hover {
+.back-action-about-btn:hover {
   background: #2a9d8f;
 }
 
@@ -374,6 +416,7 @@ export default {
   align-items: center;
   margin: auto;
 }
+
 .confirm-container > * {
   margin-top: .5em;
 }

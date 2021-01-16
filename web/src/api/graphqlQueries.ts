@@ -1,3 +1,5 @@
+/* graphql queries */
+
 export const GET_CONTACT_QUERY = `{
     getContacts {
         id
