@@ -1,0 +1,32 @@
+version: "3.7"
+
+volumes:
+  db_volume:
+
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - db_volume:/data/db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
+
+  servergraphql:
+    build: servergraphql/
+    restart: always
+    environment:
+      PORT: 8000
+    depends_on:
+      - db
+    ports:
+      - '8000:8000'
+
+  vuejs:
+    build: web/
+    restart: always
+    ports:
+      - '8080:8080'
