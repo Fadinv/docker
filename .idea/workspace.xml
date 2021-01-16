@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="23f267f7-e9ec-4241-8923-571d1598c211" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/api/graphqlMutations.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/api/graphqlMutations.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/api/graphqlQueries.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/api/graphqlQueries.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/components/AddContactPanel.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/AddContactPanel.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/components/ContactItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/ContactItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/components/NoteItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/components/NoteItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/views/About.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/views/About.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/views/Home.vue" afterDir="false" />
-    </list>
+    <list default="true" id="23f267f7-e9ec-4241-8923-571d1598c211" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,11 +38,23 @@
       <updated>1610793906618</updated>
       <workItem from="1610793907823" duration="873000" />
       <workItem from="1610794886114" duration="1349000" />
-      <workItem from="1610796531682" duration="5505000" />
+      <workItem from="1610796531682" duration="5528000" />
     </task>
+    <task id="LOCAL-00001" summary="adde comments">
+      <created>1610802080078</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1610802080078</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="adde comments" />
+    <option name="LAST_COMMIT_MESSAGE" value="adde comments" />
   </component>
 </project>
